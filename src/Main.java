@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import vehicle.*;
 
 public class Main {
+	static ArrayList<IVehicle> list = new ArrayList<IVehicle>();
+
 	// List of Menu
 	private static void menu() {
 		System.out.println();
@@ -17,10 +20,18 @@ public class Main {
 
 	// List of Vehicles
 	private static void menu1() {
-		System.out.println("List of Vehicles");
-		Car car = new Car("Car", "Tesla", "Tesla Elon Musk", "A 1234 WEW", 200, 55, 4, "SUV");
-		car.setEntertainmentSystem(2);
-		car.showCar();
+		System.out.println();
+		System.out.println("|------|---------|---------|");
+		System.out.println("|No    | Type    | Name    |");
+		System.out.println("|------|---------|---------|");
+
+		for (int i = 0; i < list.size(); i++) {
+			String type = list.get(i).getType();
+			String name = list.get(i).getName();
+
+			String showData = String.format("%d, %s, %s", i + 1, type, name);
+			System.out.println(showData);
+		}
 	}
 
 	// Add Vehicle
@@ -47,8 +58,7 @@ public class Main {
 		System.out.print("Input Gas Capacity [ 30 <= gasCap <= 60 ]: ");
 		Integer iGasCap = inputVehicle.nextInt();
 
-		System.out.print(
-				iType.equals("Car") ? "Input Wheel [ 4 <= Wheel <= 6 ]" : "Input Wheel [ 2 <= Wheel <= 3 ]");
+		System.out.print(iType.equals("Car") ? "Input Wheel [ 4 <= Wheel <= 6 ]" : "Input Wheel [ 2 <= Wheel <= 3 ]");
 		Integer iWheel = inputVehicle.nextInt();
 
 		System.out.print(iType.equals("Car") ? "Input Type Vehicle [ SUV | Super Car | Minivan ]"
@@ -62,7 +72,7 @@ public class Main {
 			Car car = new Car(iType, iBrand, iName, iLicenseNumber, iTopSpeed, iGasCap, iWheel, iTypeVehicle);
 			car.setEntertainmentSystem(iEntertainment);
 
-			car.showCar();
+			list.add(car);
 		} else if (iType.equals("Motorcycle")) {
 			System.out.print("Input Helmet [ >= 1 ]: ");
 			Integer iHelmet = inputVehicle.nextInt();
@@ -70,7 +80,7 @@ public class Main {
 			Motor motor = new Motor(iType, iBrand, iName, iLicenseNumber, iTopSpeed, iGasCap, iWheel, iTypeVehicle);
 			motor.setTotalHelmet(iHelmet);
 
-			motor.showMotor();
+			list.add(motor);
 		} else {
 			System.out.println("Wrong input Type");
 		}
@@ -89,16 +99,16 @@ public class Main {
 			case 1:
 				menu1();
 				break;
-				
+
 			case 2:
 				menu2();
 				break;
-				
+
 			case 3:
 				System.out.println("Close!");
 				System.exit(0);
 				break;
-				
+
 			default:
 				System.out.println("Oops there is no option for " + menu + "!");
 				System.exit(0);

@@ -1,6 +1,6 @@
 package vehicle;
 
-public class Car extends Vehicle {
+public class Car extends Vehicle implements IVehicle {
 	private Integer entertainmentSystem;
 
 	public Car(String type, String brand, String name, String licenseNumber, Integer topSpeed, Integer gasCap,
@@ -8,7 +8,12 @@ public class Car extends Vehicle {
 		super(type, brand, name, licenseNumber, topSpeed, gasCap, wheel, typeVehicle);
 	}
 
-	public void showCar() {
+	public void setEntertainmentSystem(Integer entertainmentSystem) {
+		this.entertainmentSystem = entertainmentSystem;
+	}
+
+	@Override
+	public void show() {
 		System.out.println("Type => " + super.type);
 		System.out.println("Brand => " + super.brand);
 		System.out.println("Name => " + super.name);
@@ -20,8 +25,14 @@ public class Car extends Vehicle {
 		System.out.println("Entertainment => " + this.entertainmentSystem);
 	}
 
-	public void setEntertainmentSystem(Integer entertainmentSystem) {
-		this.entertainmentSystem = entertainmentSystem;
+	@Override
+	public String getType() {
+		return super.type;
+	}
+
+	@Override
+	public String getName() {
+		return super.name;
 	}
 
 }
