@@ -20,6 +20,7 @@ public class Main {
 
 	// List of Vehicles
 	private static void menu1() {
+		Scanner input = new Scanner(System.in);
 		System.out.println();
 		System.out.println("|------|---------|---------|");
 		System.out.println("|No    | Type    | Name    |");
@@ -32,6 +33,16 @@ public class Main {
 			String showData = String.format("%d, %s, %s", i + 1, type, name);
 			System.out.println(showData);
 		}
+
+		System.out.print("Pick a vehicle number to test drive: ");
+		Integer selectedNumber = input.nextInt();
+
+		list.get(selectedNumber - 1).show();
+		list.get(selectedNumber - 1).customShowType();
+		
+		input.nextLine();
+		System.out.print("ENTER to return");
+		input.nextLine();
 	}
 
 	// Add Vehicle
@@ -58,12 +69,15 @@ public class Main {
 		System.out.print("Input Gas Capacity [ 30 <= gasCap <= 60 ]: ");
 		Integer iGasCap = inputVehicle.nextInt();
 
-		System.out.print(iType.equals("Car") ? "Input Wheel [ 4 <= Wheel <= 6 ]" : "Input Wheel [ 2 <= Wheel <= 3 ]");
+		System.out.print(iType.equals("Car") ? "Input Wheel [ 4 <= Wheel <= 6 ]: " : "Input Wheel [ 2 <= Wheel <= 3 ]: ");
 		Integer iWheel = inputVehicle.nextInt();
 
-		System.out.print(iType.equals("Car") ? "Input Type Vehicle [ SUV | Super Car | Minivan ]"
-				: "Input Type Vehicle [ Automatic | Manual ]");
-		String iTypeVehicle = inputVehicle.next();
+		// Fix skipped input
+		inputVehicle.nextLine();
+
+		System.out.print(iType.equals("Car") ? "Input Type Vehicle [ SUV | Supercar | Minivan ]: "
+				: "Input Type Vehicle [ Automatic | Manual ]: ");
+		String iTypeVehicle = inputVehicle.nextLine();
 
 		if (iType.equals("Car")) {
 			System.out.print("Input Entertainment System [ >= 1 ]: ");
@@ -86,7 +100,7 @@ public class Main {
 		}
 	}
 
-//	Main Method
+	// Main Method
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		Integer menu = null;
