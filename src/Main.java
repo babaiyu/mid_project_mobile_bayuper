@@ -36,10 +36,15 @@ public class Main {
 
 		System.out.print("Pick a vehicle number to test drive: ");
 		Integer selectedNumber = input.nextInt();
+		System.out.println("-----------------------------");
 
-		list.get(selectedNumber - 1).show();
-		list.get(selectedNumber - 1).customShowType();
-		
+		try {
+			list.get(selectedNumber - 1).show();
+			list.get(selectedNumber - 1).customShowType();
+		} catch (Exception e) {
+			System.out.println("Oops cannot find " + selectedNumber + " on vehicle list!");
+		}
+
 		input.nextLine();
 		System.out.print("ENTER to return");
 		input.nextLine();
