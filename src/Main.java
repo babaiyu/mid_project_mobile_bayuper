@@ -25,17 +25,20 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 		System.out.println();
 		System.out.println("|------|---------|---------|");
-		System.out.println("|No    | Type    | Name    |");
+		System.out.println("| No   | Type    | Name    |");
 		System.out.println("|------|---------|---------|");
 
 		for (int i = 0; i < list.size(); i++) {
 			String type = list.get(i).getType();
 			String name = list.get(i).getName();
+			int index = i + 1;
 
-			String showData = String.format("%d, %s, %s", i + 1, type, name);
+			String showData = String.format("| %d    | %s  |  %s  |", index, type, name);
 			System.out.println(showData);
+			System.out.println("|------|---------|---------|");
 		}
 
+		System.out.println();
 		System.out.print("Pick a vehicle number to test drive: ");
 		Integer selectedNumber = input.nextInt();
 		System.out.println("-----------------------------");
