@@ -35,7 +35,7 @@ public class Helpers {
 
 		if (license.length == 3) {
 			// Check first Letter
-			if (license[0].matches("([A-Z])"))
+			if (license[0].matches("[A-Z]+"))
 				isError1 = false;
 			else
 				isError1 = true;
